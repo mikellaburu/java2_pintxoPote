@@ -21,7 +21,7 @@ public class Pintxo{
 		return this.ingredientes;
 	}
 
-	public int geTipoPintxo() {
+	public int getTipoPintxo() {
 		return this.tipoPintxo;
 	}
 
@@ -31,15 +31,15 @@ public class Pintxo{
 		this.idPintxo = id;
 	}
 
-	public void setNombrePintxo(int nombre) {
+	public void setNombrePintxo(String nombre) {
 		this.nombrePintxo = nombre;
 	}
 
-	public void setIngredientes(int ingrs) {
+	public void setIngredientes(String [] ingrs) {
 		this.ingredientes = ingrs;
 	}	
 
-	public void setTIpoPintxo(int tipo) {
+	public void setTipoPintxo(int tipo) {
 		this.tipoPintxo = tipo;
 	}
 }

@@ -14,19 +14,20 @@ public class ProgramaPrincipal {
 		System.out.println("\tc) Cargar Bares (desde fichero bares.txt)");
 		System.out.println("\td) Asignar pintxos y potes a cada bar manualmente");
 		System.out.println("\td) Visualizar la cuenta, con los pintxos y bebidas consumidas y el importe total de cada ronda.");
-		System.out.println("\tc) Salir");
+		System.out.println("\tx) Salir");
 
 		String opcion = " ";
-
-		Switch (opcion) {
+		opcion = tecla.next();
+		
+		switch (opcion) {
 			case "a":
 				System.out.println("Leer fichero 'pintxos.txt' y guardar en un ArrayList");
 
 				try {
 					// crear fichero
-					File archivo = new File("/home/zubiri/ProyectosJava/java2_pintxoPote/src","pintxos.txt");
+					File archivo1 = new File("/home/zubiri/ProyectosJava/java2_pintxoPote/src","pintxos.txt");
 
-					if (archivo.createNewFile()) {
+					if (archivo1.createNewFile()) {
 						System.out.println("Se ha creado el archivo 'pintxos.txt' correctamente");
 					} else {
 						System.out.println("Ya existe el archivo 'pintxos.txt'");
@@ -34,56 +35,43 @@ public class ProgramaPrincipal {
 					
 					// Leer fichero y mostrar	
 								
-					Scanner leerFichero = new Scanner (archivo);
+					Scanner leerFichero1 = new Scanner (archivo1);
 					ArrayList <Pintxo> listaPintxos = new ArrayList <Pintxo>();
 
-					int cont = 1;
-					while (leerFichero.hasNextLine()) {
-						String fila = leerFichero.nextLine();//lerro bat irakurri fitxategitik eta string moduan gorde
-						String [] atributos = fila.split("; ");//atributuak koma eta hutsuneaz bereiztu eta string motako array batean gorde 
+					while (leerFichero1.hasNextLine()) {
+
+						String fila = leerFichero1.nextLine();//lerro bat irakurri fitxategitik eta string moduan gorde
+						String [] atribPintxo = fila.split(";");//atributuak koma eta hutsuneaz bereiztu eta string motako array batean gorde 
 						Pintxo pintxo1 = new Pintxo ();
-						pintxo1.setIdPintxo(atributos[0]);
-						pintxo1.setNombrePintxo(atributos[1]);
-						pintxo1.setIngredientes(atributos[2]);
-						pintxo1.setTipo(atributos[3]);
+						pintxo1.setIdPintxo(Integer.parseInt(atribPintxo[0]));
+						pintxo1.setNombrePintxo(atribPintxo[1]);
+						String [] ingredientesPintxo = atribPintxo[2].split(",");
+						pintxo1.setIngredientes(ingredientesPintxo);
+						pintxo1.setTipoPintxo(Integer.parseInt(atribPintxo[3]));
 						
-						Direccion dir = new Direccion();
-						String [] atribDireccion = atributos[2].split("\\*");
-						dir.setPueblo(atribDireccion[0]);
-						dir.setCalle(atribDireccion[1]);
-						dir.setNumero(Integer.parseInt(atribDireccion[2]));
-						dir.setCP(atribDireccion[3]);
-						dist.setDireccion(dir);
-
-						Contacto contacto = new Contacto();
-						String [] atribContacto = atributos[3].split("\\*");
-						contacto.setNombreContacto(atribContacto[0]);
-						contacto.setTlf(atribContacto[1]);
-						contacto.setEmail(atribContacto[2]);
-						dist.setPersonaContacto(contacto);
-
-						listaDistribuidores.add(dist);
+						listaPintxos.add(pintxo1);
 					
 					}
-					leerFichero.close();
-					for (int i=0; i<listaDistribuidores.size(); i++) {
+					leerFichero1.close();
+
+					for (int i=0; i<listaPintxos.size(); i++) {
 						
-						System.out.println("Distribuidor "+(i+1)+":");
-						System.out.println("\tNombre: "+listaDistribuidores.get(i).getNombre());
-						System.out.println("\tCIF: "+listaDistribuidores.get(i).getCIF());
-						System.out.println("\tDireccion:");
-						Direccion dir1 = new Direccion();
-						dir1 = listaDistribuidores.get(i).getDireccion();
-						System.out.println("\t\tPueblo: " + dir1.getPueblo());
-						System.out.println("\t\tCalle: " + dir1.getCalle());
-						System.out.println("\t\tNumero: " + dir1.getNumero());
-						System.out.println("\t\tCodigo Postal: " + dir1.getCP());
-						System.out.println("\tContacto:");
-						Contacto contac1 = new Contacto();
-						contac1 = listaDistribuidores.get(i).getPersonaContacto();
-						System.out.println("\t\tNombre: " + contac1.getNombreContacto());
-						System.out.println("\t\tTelefono: " + contac1.getTlf());
-						System.out.println("\t\te-mail: " + contac1.getEmail());
+						System.out.println("Pintxo "+(i+1)+":");
+						System.out.println("\tId: "+listaPintxos.get(i).getIdPintxo());
+						System.out.println("\tNombre: "+listaPintxos.get(i).getNombrePintxo());
+						System.out.println("\tIngredientes: ");
+						String [] ingredientesPintxo = listaPintxos.get(i).getIngredientes();
+						for (int j=0; j<ingredientesPintxo.length; j++) {
+							System.out.print(ingredientesPintxo[j]+", ");
+						}
+						String tipo = "";
+						if (listaPintxos.get(i).getTipoPintxo() == 1) {
+							tipo = "Basico";
+						}
+						if (listaPintxos.get(i).getTipoPintxo() == 2) {
+							tipo = "Selecto";
+						}
+						System.out.println("\tTipo de pintxo: "+tipo);
 						
 					}
 				} catch (Exception e) {

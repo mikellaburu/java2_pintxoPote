@@ -1,0 +1,5 @@
+01;tortilla de patata;pan,huevo,patata,sal;1;
+02;jamon iberico;pan,jamon iberico de bellota;2;
+03;bacalao;pan,bacalao,pimiento verde,sal;2;
+04;tarta de salmon;pan tostado,salmon,cebolla,txatka,gambas,fumet,vino blanco;2;
+05;gilda;guindilla,aceituna,anchoa;1;
