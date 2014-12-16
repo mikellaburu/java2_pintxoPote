@@ -14,6 +14,7 @@ public class ProgramaPrincipal {
 		System.out.println("\tc) Cargar Bares (desde fichero bares.txt)");
 		System.out.println("\td) Asignar pintxos y potes a cada bar manualmente");
 		System.out.println("\td) Visualizar la cuenta, con los pintxos y bebidas consumidas y el importe total de cada ronda.");
+		System.out.println("\tc) Salir");
 
 		String opcion = " ";
 
@@ -32,18 +33,19 @@ public class ProgramaPrincipal {
 					}
 					
 					// Leer fichero y mostrar	
-					System.out.println("Leer el contenido del fichero, identificar los objetos y atributos, y mostrarlos por pantalla\n");
-			
+								
 					Scanner leerFichero = new Scanner (archivo);
-					ArrayList <Distribuidor> listaDistribuidores = new ArrayList <Distribuidor>();
+					ArrayList <Pintxo> listaPintxos = new ArrayList <Pintxo>();
 
 					int cont = 1;
 					while (leerFichero.hasNextLine()) {
 						String fila = leerFichero.nextLine();//lerro bat irakurri fitxategitik eta string moduan gorde
 						String [] atributos = fila.split("; ");//atributuak koma eta hutsuneaz bereiztu eta string motako array batean gorde 
-						Distribuidor dist = new Distribuidor ();
-						dist.setNombre(atributos[0]);
-						dist.setCIF(atributos[1]);
+						Pintxo pintxo1 = new Pintxo ();
+						pintxo1.setIdPintxo(atributos[0]);
+						pintxo1.setNombrePintxo(atributos[1]);
+						pintxo1.setIngredientes(atributos[2]);
+						pintxo1.setTipo(atributos[3]);
 						
 						Direccion dir = new Direccion();
 						String [] atribDireccion = atributos[2].split("\\*");
