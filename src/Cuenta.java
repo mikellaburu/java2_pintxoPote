@@ -16,11 +16,11 @@ public class Cuenta {
 	}
 
 	// metodo imprimir en pantalla
-	public String inprimirCuenta(ArrayList <PintxoPote> cuenta) {
-		for (int i=0; i<cuenta.size(); i++) {
-			System.out.println("Pintxo: "+cuenta.get(i).getPincho());
-			System.out.println("Pote: "+cuenta.get(i).getPote());
-			System.out.println("Precio: "+cuenta.get(i).getPrecio());
+	public void inprimirCuenta() {
+		for (int i=0; i<this.cuenta.size(); i++) {
+			System.out.println("Pintxo: "+this.cuenta.get(i).getPincho());
+			System.out.println("Pote: "+this.cuenta.get(i).getPote());
+			System.out.println("Precio: "+this.cuenta.get(i).getPrecio());
 		}
 	}
 
